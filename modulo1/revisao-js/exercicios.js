@@ -19,7 +19,7 @@ retornaArrayInvertido([0,8,23,16,10,15,41,12,13])
 
 
 // EXERCÍCIO 03
-/*
+
 const comparar = (a, b) =>{
     return a - b
 }
@@ -29,7 +29,7 @@ function retornaArrayOrdenado(array) {
   return array.sort(comparacao)
 }retornaArrayOrdenado([36, 12, 56, 7, 3])
 
-*/
+
 
 // EXERCÍCIO 04
 /*
