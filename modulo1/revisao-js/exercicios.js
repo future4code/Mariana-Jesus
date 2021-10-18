@@ -45,14 +45,16 @@ retornaNumerosPares([1, 2, 3, 4])
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-
-    return array
+    const num = array.filter((item) =>{
+        return item % 2 === 0
+    })
+    const numEle = num.map((ele)=>{
+        return ele * ele
+    })
+    return numEle
 }
 retornaNumerosParesElevadosADois()
-
-
-
-
+/*
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
     let maior = 0
@@ -64,11 +66,22 @@ function retornaMaiorNumero(array) {
   return maior
 }
 retornaMaiorNumero([1, 2, 3])
-
+*/
 // EXERCÍCIO 07
-function retornaObjetoEntreDoisNumeros(num1, num2) {
 
+
+
+function retornaObjetoEntreDoisNumeros(num1, num2) {
+    let arrayOrdenado = array.sort((a, b) => a - b)
+
+    let maiorNumero = arrayOrdenado[arrayOrdenado.length - 2]
+
+    let menorNumero = arrayOrdenado[1]
+    
+
+ 
 }
+retornaObjetoEntreDoisNumeros(15,30)
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
