@@ -33,37 +33,38 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 /*
-const array1 = [1, 2, 3, 4, 5, 6, 7, 8]
 function retornaNumerosPares(array) {
-    array = array1.filter(numerosPares)
+    array = array.filter(numerosPares)
     return array
 }
 
 const numerosPares = (par) => {
     return par % 2 === 0
 }
-retornaNumerosPares([])
-
-// EXERCÍCIO 05
-const retornaNumerosParesElevadosADois = retornaNumerosPares.map((array) => {
-    
-    return array
-})
-console.log(retornaNumerosParesElevadosADois)
+retornaNumerosPares([1, 2, 3, 4])
 */
+// EXERCÍCIO 05
+function retornaNumerosParesElevadosADois(array) {
+
+    return array
+}
+retornaNumerosParesElevadosADois()
 
 
 
 
-/*
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  let arr = [1, 2, 3, 4, 5, 6, 7]
-  array = Math.max(...arr)
-  return array
+    let maior = 0
+    for(let i=0; i < array.length; i++){
+        if (array[i] > maior){
+            maior = array[i]
+        }
+    }
+  return maior
 }
-retornaMaiorNumero()
-*/
+retornaMaiorNumero([1, 2, 3])
+
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
 
