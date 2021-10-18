@@ -100,17 +100,32 @@ retornaObjetoEntreDoisNumeros(15,30)
 function retornaNPrimeirosPares(n) {
    
 }
+retornaNPrimeirosPares([])
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+    if(ladoA === ladoB && ladoA === ladoC ){
+        return "Equilátero"
+    }else if(ladoA === ladoB || ladoA === ladoC || ladoB === ladoC){
+        return "Isósceles"
+    }else{
+        return "Escaleno"
+    }
+    
 }
-
+/*
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
-}
+  const arrayOrdenado = array.sort((a, b) => a -b)
 
+  const segundoMaiorValor = arrayOrdenado[arrayOrdenado.length - 2]
+
+  const segundoMenorValor = arrayOrdenado[1]
+
+  const resultado = [segundoMaiorValor, segundoMenorValor]
+  return resultado
+}
+*/
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
    
