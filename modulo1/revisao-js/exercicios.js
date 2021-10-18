@@ -69,19 +69,32 @@ retornaMaiorNumero([1, 2, 3])
 
 // EXERCÍCIO 07
 
-
+let maiorNumero1
+let menorNumero1
 
 function retornaObjetoEntreDoisNumeros(num1, num2) {
-    let arrayOrdenado = array.sort((a, b) => a - b)
-
-    let maiorNumero = arrayOrdenado[arrayOrdenado.length - 2]
-
-    let menorNumero = arrayOrdenado[1]
-    
-
- 
+    if(num1 > num2){
+        maiorNumero1 = num1
+        menorNumero1 = num2
+    }else{
+        maiorNumero1 = num2
+        menorNumero1 = num1
+    }
+    const objeto = {
+        maiorNumero: maiorNumero1,
+        maiorDivisivelPorMenor: maiorNumero1 % menorNumero1 === 0,
+        diferenca: maiorNumero1 - menorNumero1
+    }
+    return objeto
 }
+
 retornaObjetoEntreDoisNumeros(15,30)
+
+//let arrayOrdenado = array.sort((a, b) => a - b)
+
+// let maiorNumero = arrayOrdenado[arrayOrdenado.length - 1]
+
+// let menorNumero = arrayOrdenado[1]
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
