@@ -10,13 +10,13 @@ function retornaTamanhoArray(array) {
 }retornaTamanhoArray([3, 2, 1, 4, 7])
 
 
-/*
+
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
   return array.slice(0).reverse()
 }
 retornaArrayInvertido([0,8,23,16,10,15,41,12,13])
-*/
+
 
 // EXERCÍCIO 03
 /*
