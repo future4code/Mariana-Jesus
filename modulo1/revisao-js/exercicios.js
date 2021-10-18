@@ -32,7 +32,7 @@ function retornaArrayOrdenado(array) {
 
 
 // EXERCÍCIO 04
-/*
+
 function retornaNumerosPares(array) {
     array = array.filter(numerosPares)
     return array
@@ -42,7 +42,7 @@ const numerosPares = (par) => {
     return par % 2 === 0
 }
 retornaNumerosPares([1, 2, 3, 4])
-*/
+
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
 
