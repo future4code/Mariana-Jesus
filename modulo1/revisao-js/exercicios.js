@@ -90,15 +90,17 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 
 retornaObjetoEntreDoisNumeros(15,30)
 
-//let arrayOrdenado = array.sort((a, b) => a - b)
-
-// let maiorNumero = arrayOrdenado[arrayOrdenado.length - 1]
-
-// let menorNumero = arrayOrdenado[1]
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+   let numero = n
+   let contagem = 0
+   let array = []
+   for (i=0; i < numero; i++){
+       array.push(contagem)
+       contagem = contagem + 2
+   }
+   return array
 }
 retornaNPrimeirosPares([])
 
@@ -128,7 +130,13 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+   filme = {
+    nome: 'O Diabo Veste Prada',
+    ano: 2006,
+    diretor: 'David Frankel',
+    atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+ }
+ return`Venha assitir ao filme ${filme.filme}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores[0]}, ${filme.atores[1]}`
 }
 
 // EXERCÍCIO 12
