@@ -54,7 +54,7 @@ function retornaNumerosParesElevadosADois(array) {
     return numEle
 }
 retornaNumerosParesElevadosADois()
-/*
+
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
     let maior = 0
@@ -66,7 +66,7 @@ function retornaMaiorNumero(array) {
   return maior
 }
 retornaMaiorNumero([1, 2, 3])
-*/
+
 // EXERCÍCIO 07
 
 
