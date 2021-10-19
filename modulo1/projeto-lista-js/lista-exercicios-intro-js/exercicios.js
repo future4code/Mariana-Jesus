@@ -1,6 +1,6 @@
 // EXEMPLOS DE IMPLEMENTAÇÃO ---------------------------------------------------------------
 
-/*// EXERCÍCIO 0A
+// EXERCÍCIO 0A
 function soma(num1, num2) {
   // implemente sua lógica aqui
   return num1 + num2
@@ -111,7 +111,7 @@ function checaIgualdadeDesconsiderandoCase(string1, string2) {
   return minuscula1 === minuscula2
 
 }
-*/
+
 
 // EXERCÍCIO 13
 
@@ -119,16 +119,15 @@ function checaRenovacaoRG() {
  
 }
 
-/*
+
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
 
 
-
+}
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu() {
   // implemente sua lógica aqui
 
 }
-*/
