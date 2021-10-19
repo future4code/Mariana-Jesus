@@ -4,7 +4,7 @@
 
 
 // EXERCÍCIO 01
-
+/*
 function retornaTamanhoArray(array) {
    return array.length
 }retornaTamanhoArray([3, 2, 1, 4, 7])
@@ -127,18 +127,23 @@ function retornaSegundoMaiorESegundoMenor(array) {
   const resultado = [segundoMaiorValor, segundoMenorValor]
   return resultado
 }
+*/
 
 // EXERCÍCIO 11
+// const objeto = {
+//     nome: 'O Diabo Veste Prada',
+//     ano: 2006,
+//     diretor: 'David Frankel',
+//     atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
+//  }
 function retornaChamadaDeFilme(filme) {
-   filme = {
-    nome: 'O Diabo Veste Prada',
-    ano: 2006,
-    diretor: 'David Frankel',
-    atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
- }
- return`Venha assitir ao filme ${filme.filme}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores[0]}, ${filme.atores[1]}`
+    //  filme = {
+    //      ...objeto
+    //  }
+ 
+ return`Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.join(', ')}.`
 }
-
+retornaChamadaDeFilme()
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
    
