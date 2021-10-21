@@ -35,7 +35,8 @@ div>p:first-child {
 }
 
 div img {
-    background: black;
+    width: 25px;
+    height: 25px;
 }
 
 .botao-amarelo {
@@ -119,6 +120,14 @@ td button {
     color: black;
     
 }
+
+.botao-voltar {
+    margin: 0 auto;
+    width: 60%;
+    border: 1px solid ;
+}
+
+
 
 .container-do-search {
     margin-top: 20px;
