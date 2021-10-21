@@ -47,6 +47,10 @@ div img {
     text-decoration: none;
 }
 
+.bot{
+    padding-top: 45px;
+}
+
 .botao-amarelo:hover {
     background-color: #c44f00;
 }
@@ -70,6 +74,7 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    padding-top: 90px;
 }
 
 #container-de-descricao>ol {
