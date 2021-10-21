@@ -124,7 +124,8 @@ td button {
 .botao-voltar {
     margin: 0 auto;
     width: 60%;
-    border: 1px solid ;
+    text-align: center;
+    padding-top: 55px;
 }
 
 
