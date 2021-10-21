@@ -121,6 +121,14 @@ td button {
     
 }
 
+td button:hover{
+    background-color: #b1930e;
+}
+
+td button:active{
+    color: white;
+}
+
 .botao-voltar {
     margin: 0 auto;
     width: 60%;
