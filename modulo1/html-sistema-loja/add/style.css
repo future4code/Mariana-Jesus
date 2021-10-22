@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.titulo{
+    color: rgb(27, 27, 24);
+    padding: 10px;
+}
+
+header{
+    width: 100%;
+    height: 145px;
+    background-color: rgb(163, 165, 137);
+    text-align: center;
+    
+}
+
+.link button{
+padding-top: 10px;
+width: 170px;
+border-radius: 12px;
+border: 0 solid;
+height: 30px;
+padding-bottom: 23px;
+cursor: pointer;
+background-color: rgb(122, 41, 61);
+}
+
+button a{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(163, 165, 137);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+
+
+.i img{
+    width: 65px;
+    height: 65px;
+    
+
+}
+
+/*          Body             */
+
+body{
+    background-color: rgb(163, 163, 163);
+}
+
+h2{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(122, 41, 61);
+    padding: 20px;
+    font-size: 22px;
+}
+
+form{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    
+
+}
+
+label{
+    display: block;
+    color: rgb(122, 41, 61);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+}
+
+input{
+    background-color: rgb(202, 202, 191);
+    border-radius: 5px;
+    border: 0.5;
+    border-color: rgb(122, 41, 61);
+    width: 400px;
+    height: 20px;
+}
+
+
+.form-add button{
+    margin-top: 15px;
+    background-color: rgb(122, 41, 61);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 0 solid;
+    height: 25px;
+    width: 100px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/*         Footer            */
+footer.rodape{
+    width: 100%;
+    height: 100px;
+    background-color: rgb(164, 167, 127);
+    position: fixed;
+    bottom: 10px;
+    text-align: center;
+    
+}
+
+img{
+    display: inline;
+    width: 45px;
+    height: 45px;
+    margin: 10px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    
+}
+
+.imagens{
+    width: 100%;
+}
+
+.siga{
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
