@@ -78,6 +78,36 @@ main{
 }
 
 
+/*-----FOTOS DOS BOLOS------*/
+
+
+.main2{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 10px;
+}
+
+.bolo{
+    
+    background-color: rgb(241, 238, 238);
+    -webkit-box-shadow: 9px 7px 5px darkgray;
+    -moz-box-shadow: 9px 7px 5px darkgray;
+    box-shadow: 9px 7px 5px darkgray;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+div > img{
+    width: 304px;
+    height: 120px;
+    flex-grow: 1;
+}
+
+
 /*-----FOOTER------*/
 
 footer{
