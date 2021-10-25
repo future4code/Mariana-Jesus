@@ -30,6 +30,52 @@ header{
 }
 
 
+/* ------MAIN-------*/
+
+
+/*-----MENU LATERAL----*/
+main{
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 235px 1fr;
+    height: 100vh;
+}
+
+.main1{
+    background-color: #f2d0e0;
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+}
+
+.menu-img > img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu-descricao > img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu-img{
+    display: flex;
+    align-items: flex-end;
+}
+
+.menu-descricao{
+    display: flex;
+}
+
+.menu-descricao > img{
+    padding-right: 15px;
+}
+
+.menu{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
 
 
 /*-----FOOTER------*/
