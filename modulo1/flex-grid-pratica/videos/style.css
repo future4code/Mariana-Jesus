@@ -22,38 +22,25 @@ header{
 }
 
 
-/*-----Corpo-----*/
-
-
-.video{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    height: 350px;
-
-}
-
-.video > img{
-    width: 100%;
-    height: 300px;
-}
 
 main{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 98%;
-    justify-items: stretch;
-    gap: 15px;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 574px;
 }
 
-a{
-    text-decoration: none;
-    color: black;
-    font: bolder;
+.titulo-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
 }
 
+main > video{
+width: 800px;
+
+}
 
 
 /*----Rodapé-----*/
