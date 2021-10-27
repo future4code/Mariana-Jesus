@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    padding: 0 20px;
+    background-color: darkolivegreen;
+}
+
+#busca{
+    width: 220px;
+    height: 27px;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 574px;
+}
+
+.titulo-video{
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    width: 800px;
+}
+
+main > video{
+width: 800px;
+
+}
+
+
+/*----Rodapé-----*/
+
+footer{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    background-color: darkolivegreen;
+    justify-content: center;
+}
