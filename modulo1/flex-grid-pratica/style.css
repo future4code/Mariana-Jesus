@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    padding: 0 20px;
+    background-color: darkolivegreen;
+}
+
+#busca{
+    width: 120px;
+    height: 27px;
+}
+
+
+/*-----Corpo-----*/
+
+
+.video{
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 2px 2px 5px;
+    height: 350px;
+
+}
+
+.video > img{
+    width: 100%;
+    height: 300px;
+}
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 98%;
+    justify-items: stretch;
+    gap: 15px;
+    padding: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font: bolder;
+}
+
+
+
+/*----Rodapé-----*/
+
+footer{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    background-color: darkolivegreen;
+    justify-content: center;
+}
