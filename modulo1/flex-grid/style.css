@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+header{
+    background-color: mediumvioletred;
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+
+.logo{
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo > img{
+    width: 30px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+
+/* ------MAIN-------*/
+
+
+/*-----MENU LATERAL----*/
+main{
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 235px 1fr;
+    height: 100vh;
+}
+
+.main1{
+    background-color: #f2d0e0;
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+}
+
+.menu-img > img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu-descricao > img{
+    width: 25px;
+    height: 25px;
+}
+
+.menu-img{
+    display: flex;
+    align-items: flex-end;
+}
+
+.menu-descricao{
+    display: flex;
+}
+
+.menu-descricao > img{
+    padding-right: 15px;
+}
+
+.menu{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+
+/*-----FOTOS DOS BOLOS------*/
+
+
+.main2{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 10px;
+}
+
+.bolo{
+    
+    background-color: rgb(241, 238, 238);
+    -webkit-box-shadow: 9px 7px 5px darkgray;
+    -moz-box-shadow: 9px 7px 5px darkgray;
+    box-shadow: 9px 7px 5px darkgray;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
+
+div > img{
+    width: 304px;
+    height: 120px;
+    flex-grow: 1;
+}
+
+
+/*-----FOOTER------*/
+
+footer{
+    background-color: mediumvioletred;
+    display: flex;
+    height: 70px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+}
