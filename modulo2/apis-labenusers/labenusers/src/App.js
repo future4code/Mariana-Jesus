@@ -12,9 +12,9 @@ export default class App extends React.Component {
   escolheTela = () => {
     switch (this.state.telaAtual) {
       case 'cadastro':
-        return <ListaUsuarios irParaLista={this.irParaLista} />;
+        return <CadastroUsuarios irParaLista={this.irParaLista} />;
       case 'lista':
-        return <CadastroUsuarios irParaCadastro={this.irParaCadastro} />;
+        return <ListaUsuarios irParaCadastro={this.irParaCadastro} />;
       default:
         return <div>Erro!</div>
     }

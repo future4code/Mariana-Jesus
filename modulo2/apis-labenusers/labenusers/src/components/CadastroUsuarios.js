@@ -15,13 +15,15 @@ export default class ListaUsuarios extends React.Component {
         this.setState({ email: event.target.value });
     };
 
-    fazerCadastro = () => {
+
+    fazerCadastro = async() => {
         const body = {
             name: this.state.nome,
             email: this.state.email
         };
 
-        axios
+        try{
+            const resposta = await axios
             .post(
                 "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
                 body,
@@ -29,16 +31,40 @@ export default class ListaUsuarios extends React.Component {
                     headers: {
                         Authorization: "mariana-jesus-carver"
                     }
-                }
-            )
-            .then((resposta) => {
+                })
                 this.setState({ nome: "", email: "" });
                 console.log("feito");
-            })
-            .catch((error) => {
-                alert(error.response.data.message);
-            });
-    };
+        }catch(err){
+            alert(err.response.data.message);
+        }
+
+        }
+
+
+    // fazerCadastro = () => {
+    //     const body = {
+    //         name: this.state.nome,
+    //         email: this.state.email
+    //     };
+
+    //     axios
+    //         .post(
+    //             "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+    //             body,
+    //             {
+    //                 headers: {
+    //                     Authorization: "mariana-jesus-carver"
+    //                 }
+    //             }
+    //         )
+    //         .then((resposta) => {
+    //             this.setState({ nome: "", email: "" });
+    //             console.log("feito");
+    //         })
+    //         .catch((error) => {
+    //             alert(error.response.data.message);
+    //         });
+    // };
 
 
     render() {

@@ -20,40 +20,83 @@ export default class ListaUsuarios extends React.Component {
         this.pegarUsuarios();
     }
 
-    pegarUsuarios = () => {
-        axios
-            .get(
-                "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-                {
-                    headers: {
-                        Authorization: "mariana-jesus-carver"
-                    }
+
+
+
+
+    //ASYNC/AWAIT
+
+
+    pegarUsuarios = async() => {
+        try{
+            const resposta = await axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",{
+                headers:{
+                    Authorization: 'mariana-jesus-carver'
                 }
-            )
-            .then((resposta) => {
-                this.setState({ usuarios: resposta.data });
             })
-            .catch((err) => {
-                alert("Erro ao carregar");
-            });
-    };
+            this.setState({usuarios: resposta.data})
+        } catch(err){
+            alert("Erro ao carregar")
+        }
+        };
 
 
-    deletarUsuario = (id) => {
-        axios.delete(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
-            headers: {
-                Authorization: 'mariana-jesus-carver'
+        deletarUsuario = async(id) => {
+            try{
+                const resposta = await axios.delete(
+                    `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
+                    headers: {
+                        Authorization: 'mariana-jesus-carver'
+                    }
+                })
+                this.pegarUsuarios()
+                alert('Usuário deletado')
+            }catch (err){
+                alert('Erro ao deletar')
             }
         }
-        ).then((resposta) => {
-            alert('Usuário deletado')
-            this.pegarUsuarios()
-        }).catch((err) => {
-            alert('Erro ao deletar')
 
-        })
-    }
+
+
+
+
+
+// FUNÇÃO NORMAL
+
+    // pegarUsuarios = () => {
+    //     axios
+    //         .get(
+    //             "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+    //             {
+    //                 headers: {
+    //                     Authorization: "mariana-jesus-carver"
+    //                 }
+    //             }
+    //         )
+    //         .then((resposta) => {
+    //             this.setState({ usuarios: resposta.data });
+    //         })
+    //         .catch((err) => {
+    //             alert("Erro ao carregar");
+    //         });
+    // };
+
+
+    // deletarUsuario = (id) => {
+    //     axios.delete(
+    //         `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, {
+    //         headers: {
+    //             Authorization: 'mariana-jesus-carver'
+    //         }
+    //     }
+    //     ).then((resposta) => {
+    //         alert('Usuário deletado')
+    //         this.pegarUsuarios()
+    //     }).catch((err) => {
+    //         alert('Erro ao deletar')
+
+    //     })
+    // }
 
 
     render() {
