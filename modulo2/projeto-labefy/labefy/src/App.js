@@ -1,6 +1,14 @@
 import React from "react"
 import Detalhe from "./components/Detalhe";
-import Playlists from './components/Playlists'
+import Playlists from './components/Playlists';
+import styled from "styled-components";
+
+
+const Div = styled.div`
+  display: flex;
+  height: 100vh;
+`
+
 
 export default class App extends React.Component {
   state = {
@@ -29,9 +37,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        {this.escolheTela()}
-      </div>
+      <Div>
+        <nav>
+          <Playlists/>
+        </nav>
+        <main>
+          <Detalhe/>
+        </main>
+        {/* {this.escolheTela()} */}
+      </Div>
     );
   }
 }

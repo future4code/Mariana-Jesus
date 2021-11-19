@@ -17,7 +17,8 @@ export default class Detalhe extends React.Component {
         artista: '',
         url: '',
         playlists: [],
-        tracks: []
+        tracks: [],
+        playListId:''
     }
 
 //  FUNÇÃO INPUT
@@ -102,14 +103,39 @@ export default class Detalhe extends React.Component {
         })
             .then((resposta) => {
 
-                this.setState({ tracks: resposta.data.result.tracks })
-                console.log(resposta.data.result.tracks)
+                this.setState({ tracks: resposta.data.result.tracks, playListId: id })
+                console.log(this.state.tracks)
                 
             })
             .catch((err) => {
                 console.log("deu errado", err.response.data)
             })
     }
+
+
+//DELETAR MÚSICAS DA PLAYLIST
+
+
+removeTrackFromPlaylist = (id) => {
+        axios
+            .delete(
+                `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.playListId}/tracks/${id}`,
+                {
+                    headers: {
+                        Authorization: "mariana-jesus-carver"
+                    }
+                }
+            )
+            .then((resposta) => {
+                alert("Música deletada");
+                this.getPlaylistTracks(this.state.playListId);
+                
+                console.log(resposta.data)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            });
+    };
     
 
 
@@ -148,6 +174,7 @@ export default class Detalhe extends React.Component {
                 <div key={track.id}>
                     <li>{track.name}</li>
                     <p>{track.artist}</p>
+                    <button onClick={() => this.removeTrackFromPlaylist(track.id)}>X</button>
                     <audio controls='controls'>
                         <source src={track.url} type='audio/mp3' />
                        

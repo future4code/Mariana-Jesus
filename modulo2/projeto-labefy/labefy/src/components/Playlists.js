@@ -13,7 +13,8 @@ const Card = styled.div`
 export default class Playlists extends React.Component {
     state = {
         nome: '',
-        playlists: []
+        playlists: [],
+        playListId:''
 
     }
 
@@ -38,6 +39,7 @@ export default class Playlists extends React.Component {
             )
             .then((resposta) => {
                 this.setState({ nome: "" });
+                this.getAllPlaylists()
                 console.log("feito");
             })
             .catch((error) => {
