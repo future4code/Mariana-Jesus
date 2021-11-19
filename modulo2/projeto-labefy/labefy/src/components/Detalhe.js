@@ -14,90 +14,163 @@ const Card = styled.div`
 export default class Detalhe extends React.Component {
     state = {
         nome: '',
+        artista: '',
+        url: '',
         playlists: [],
-        playlistSelecionada: ''
+        tracks: []
     }
 
-    // componentDidMount() {
-    //     this.getAllPlaylists();
-    // }
-
-    // getAllPlaylists = () => {
-    //     axios
-    //         .get(
-    //             "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
-    //             {
-    //                 headers: {
-    //                     Authorization: "mariana-jesus-carver"
-    //                 }
-    //             }
-    //         )
-    //         .then((resposta) => {
-    //             this.setState({ playlists: resposta.data.result.list });
-    //         })
-    //         .catch((err) => {
-    //             alert("Erro ao carregar");
-    //         });
-    // };
+//  FUNÇÃO INPUT
+    inputNome = (event) => {
+        this.setState({ nome: event.target.value });
+    };
+    inputArtista = (event) => {
+        this.setState({ artista: event.target.value });
+    };
+    inputUrl = (event) => {
+        this.setState({ url: event.target.value });
+    };
 
 
+    //PLAYLISTS ATUALIZADAS
+    componentDidMount() {
+        this.getAllPlaylists();
+    }
 
-    // telaDaPlaylistSelecionada = async (playlist) =>{
 
-    //     const dadosDaPlaylist = await this.pegarDadosDaPlaylist(playlist)
-    //     this.setState({ playlistSelecionada: dadosDaPlaylist })
-    // }  
+    getAllPlaylists = () => {
+        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
+        axios
+            .get(
+                url,
+                {
+                    headers: {
+                        Authorization: "mariana-jesus-carver"
+                    }
+                }
+            )
+            .then((resposta) => {
+                this.setState({ playlists: resposta.data.result.list });
+            })
+            .catch((err) => {
+                alert("Erro ao carregar");
+            });
+    };
 
-    // getPlaylistTracks = async (playlist) => {
-    //     const response = await axios.all([
-    //         axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=${playlist.name}`, {
-    //             headers: {
-    //                 "Authorization": 'mariana-jesus-carver'
-    //             }
-    //         }),
-    //         axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlist.id}/tracks`, {
-    //             headers: {
-    //                 "Authorization": 'mariana-jesus-carver'
-    //             }
-    //         })
-    //     ]).then(axios.spread((response1, response2) => {
-    //         let responseResult = response1.data.result.playlist
-    //         responseResult.tracks = response2.data.result.tracks
-    //         let resultadoFinal = responseResult
-    //         return resultadoFinal
-    //     }))
-    //     return response
-    // }
 
-            // .then((resposta, resposta1) => {
-            //     this.getAllPlaylists();
-            //     console.log(resposta.data.result.playlist)
-            //     console.log(resposta1.data.result.trucks)
-            // })
-//             .catch((err) => {
-//     alert("Erro ao carregar");
 
-// });
-//     };
+    //ADIÇÃO DE MÚSICAS NA PLAYLIST
 
-render() {
-    const listaPlaylists = this.state.playlists.map((playlist) => {
+    addTrackToPlaylist = (id) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+        const body = {
+            name: this.state.nome,
+            artist: this.state.artista,
+            url: this.state.url
+        };
+
+        axios
+            .post(
+                url, body,
+                {
+                    headers: {
+                        Authorization: "mariana-jesus-carver"
+                    }
+                })
+            .then((resposta) => {
+                this.setState({ nome: "", artista: '', url: '' });
+                console.log("feito");
+                this.getAllPlaylists()
+            })
+            .catch((error) => {
+                alert(error.response.data);
+                console.log(error.response.data)
+            });
+    };
+
+
+    //MÚSICAS DAS PLAYLISTS
+
+
+    getPlaylistTracks = (id) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
+
+        axios.get(url, {
+            headers: {
+                Authorization: "mariana-jesus-carver"
+            }
+        })
+            .then((resposta) => {
+
+                this.setState({ tracks: resposta.data.result.tracks })
+                console.log(resposta.data.result.tracks)
+                
+            })
+            .catch((err) => {
+                console.log("deu errado", err.response.data)
+            })
+    }
+    
+
+
+    render() {
+        const listaPlaylists = this.state.playlists.map((playlist) => {
+            return (
+                <Card key={playlist.id}>
+                    <p>{playlist.name}</p>
+
+                    <input
+                        placeholder="Nome"
+                        value={this.state.nome}
+                        onChange={this.inputNome}
+                    />
+                    <input
+                        placeholder="Artista"
+                        value={this.state.artista}
+                        onChange={this.inputArtista}
+                    />
+                    <input
+                        placeholder="Url"
+                        value={this.state.url}
+                        onChange={this.inputUrl}
+                    />
+
+
+                    <button onClick={()=> {this.addTrackToPlaylist(playlist.id)}}>Cadastrar música</button>
+
+                    <button onClick={()=> {this.getPlaylistTracks(playlist.id)}}>Ver detalhe</button>
+                </Card>
+            );
+        });
+
+        const playlistTracks = this.state.tracks.map((track) => {
+            return (
+                <div key={track.id}>
+                    <li>{track.name}</li>
+                    <p>{track.artist}</p>
+                    <audio controls='controls'>
+                        <source src={track.url} type='audio/mp3' />
+                       
+                    </audio>
+
+                </div>
+            )
+        })
+        console.log(this.listaPlaylists)
+        console.log(this.playlistTracks)
+        // console.log('tracks', this.addTrackToPlaylist)
+
         return (
-            <Card key={playlist.id} onClick={() => this.getPlaylistTracks(playlist.id)}>
-                {playlist.name}
+            <div>
+                {listaPlaylists}
+                {playlistTracks}
 
-            </Card>
-        );
-    });
-    console.log(this.listaPlaylists)
+                <button onClick={this.props.irParaPlaylists}>Ir Para Playlists</button>
 
-    return (
-        <div>
 
-            <button onClick={this.props.irParaPlaylists}>Ir Para Playlists</button>
-            {listaPlaylists}
 
-        </div>
-    )
-}
+
+            </div>
+        )
+    }
 }
