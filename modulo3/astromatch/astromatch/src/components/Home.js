@@ -46,9 +46,55 @@ const Footer = styled.div`
   justify-content: space-around;
 
 
+  
+`
+
+const Card = styled.div`
+  height: 29rem;
+  margin-bottom: 12px;
+  margin-top: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  box-shadow: 0 0 0.5em gray;
+  border-style: hidden;
+  border-radius: 10px;
+  align-items: center;
+  position: relative;
+
+  div{
+    position: absolute;
+    text-shadow: 0px 0px 5px gray;
+    color: white;
+    font-size: 20px;
+    top:340px;
+    font: bold;
+  }
+
   img{
-    width: 40px;
-    height: 40px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+`
+
+const Button = styled.button`
+  border-style: hidden;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 40px;
+  margin-top: 15px;
+  :hover{
+    background-color: white;
+    img{
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  img{
+    width: 38px;
+    height: 38px;
   }
 `
 
@@ -67,11 +113,11 @@ export default function Home(props) {
     axios.get(`${url}person`)
     .then((res)=>{
       setProfile(res.data.profile)
-      console.log(res.data.profile)
+      
       setId(res.data.profile.id)
-      console.log(res.data.profile.id)
+      
     }).catch((err)=>{
-      console.log(err.response.data)
+      alert(err.response.data)
     })
 
   }
@@ -86,11 +132,11 @@ export default function Home(props) {
     .then((res)=>{
       getProfile()
     }).catch((err)=>{
-      console.log(err.response.data)
+      alert(err.response.data)
     })
   }
 
-  const novaPerson = (pessoa) =>{
+  const match = (pessoa) =>{
     setPerson(pessoa)
     choosePerson()
   }
@@ -102,13 +148,21 @@ export default function Home(props) {
       <img src={Logo}/>
       <BotaoHome onClick={() => props.mudar("match")}><img src={ImgMatch}/></BotaoHome>
       </Headersty>
-      <Card>
-        {profile.data.photo}
-      </Card>
-      {novaPerson}
+      
+        <Card>
+        <img src={profile.photo} alt={profile.name}/>
+        <div>
+        <p>{profile.name}, {profile.age}</p>
+        <p>{profile.bio}</p>
+        </div>
+        </Card>
+      
+      {match}
       <Footer>
-      <img src={Like}/>
-      <img src={Deslike}/>
+      <Button onClick={()=>{match(false)}}><img src={Deslike}/></Button>
+      <Button onClick={()=>{match(true)}}><img src={Like}/></Button>
+      
+      
       </Footer>
       
     </div>

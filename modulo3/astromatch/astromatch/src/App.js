@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const Body = styled.div`
   border: 1px solid;
-  width: 30vw;
+  width: 50vw;
   height: 80vh;
   margin: 0 auto;
   align-items:center;
@@ -35,7 +35,6 @@ export default function App() {
 
 const limpa = ()=>{
   const urlLimpa = `${url}/clear`
-
   axios.put(urlLimpa)
   .then((res)=>{
     setPagina('home')
@@ -50,8 +49,6 @@ const limpa = ()=>{
   return (
     <div>
     <Body>
-      
-        
       {escolha()}
     
     </Body>
