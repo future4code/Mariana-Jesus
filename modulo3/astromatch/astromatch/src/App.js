@@ -1,24 +1,35 @@
 
 import {useState} from 'react'
-import Body from "./components/Body";
-import Match from './components/Match'
+import Home from "./components/Home";
+import Match from './components/Match/Match'
 import {url} from './components/constants/url'
 import axios from "axios";
-import {Corpo, Header} from './components/Corpo'
-import Logo from './img/astromach.png'
+import styled from 'styled-components';
+
+
+const Body = styled.div`
+  border: 1px solid;
+  width: 30vw;
+  height: 80vh;
+  margin: 0 auto;
+  align-items:center;
+  background-color: #fefbf3;
+`;
+
 
 export default function App() {
-  const [pagina, setPagina] = useState('body')
+  const [pagina, setPagina] = useState('home')
+  
   const mudanca = (pagina)=> {setPagina(pagina)}
 
   const escolha = ()=>{
     switch (pagina){
-      case 'body':
-        return <Body mudar={mudanca}/>;
+      case 'home':
+        return <Home mudar={mudanca} />;
       case 'match':
         return <Match mudar={mudanca}/>;
         default:
-          return <Body mudar={mudanca}/>
+          return <Home mudar={mudanca}/>
     }
   }
 
@@ -36,18 +47,14 @@ const limpa = ()=>{
   })
 }
 
-//https://cdn-icons-png.flaticon.com/512/1077/1077909.png
-//https://cdn-icons.flaticon.com/png/512/3060/premium/3060028.png?token=exp=1638232259~hmac=8a04ae6a187d72a7c4c0daeb7f52afed
-
   return (
     <div>
-    <Corpo>
-    <Header>
-      <img src={Logo}/>
-    </Header>
+    <Body>
+      
+        
       {escolha()}
-      <h1>Hello CodeSandbox</h1>
-    </Corpo>
+    
+    </Body>
     <button onClick={()=>{limpa()}}>Limpar cachê</button>
     </div>
   );
