@@ -5,54 +5,41 @@ import styled from 'styled-components'
 import ImgHome from '../../img/home.png'
 import axios from 'axios'
 import { useEffect } from 'react/cjs/react.development'
-
-const Headersty = styled.div`
-    background-color: #fef5ed;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
+import { Headersty, Imagem, BotaoMatch, Nav } from './style'
 
 
-img{
-    height: 70px;
-    width: 50%;
-}
-`
-
-const BotaoMatch = styled.button`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  border-style: hidden;
-  background-color: transparent;
-
-  img{
-    width: 35px;
-    height: 35px;
-  }
-`
-
-const Card = styled.div`
-  height: 29rem;
-  margin-bottom: 12px;
-  margin-top: 10px;
-  margin-left: 8px;
-  margin-right: 8px;
+ const Card = styled.div`
+  height: 120px;
+  margin: 10px 8px 12px 8px;
   box-shadow: 0 0 0.5em gray;
   border-style: hidden;
   border-radius: 10px;
   align-items: center;
+  display: flex;
+  align-content: space-between;
+  
+
+  div{
+    
+    text-shadow: 0px 0px 5px gray;
+    color: black;
+    font-size: 20px;
+    top:340px;
+    font: bold;
+  }
+
+  img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+  }
 `
 
 
-
 export default function Body(props) {
-  const [matches, setMatches] = useState()
+  const [matches, setMatches] = useState([])
   
-
   useEffect(()=>{
     getMatches()
   }, [])
@@ -61,7 +48,7 @@ export default function Body(props) {
     axios.get(`${url}matches`)
     .then((res)=>{
       setMatches(res.data.matches)
-      console.log(res.data.matches)
+      // console.log(res.data.matches)
       // setId(res.data.id)
       // console.log(res.data.id)
       
@@ -71,25 +58,32 @@ export default function Body(props) {
   
   }
 
-
   const copia = matches.map((perfil)=>{
-    return <div key={perfil.id}>
-          <img src={perfil.photo}/>
-          <p>{perfil.name}</p>
+    return <Card key={perfil.id}>
+          <img src={perfil.photo} alt={perfil.name}/>
+          <div><p>{perfil.name}</p></div>
       
-    </div>
+    </Card>
   })
+
   
   return (
     <div>
       <Headersty>
+      <Imagem>
       <img src={Logo}/>
+      </Imagem>
+      
      <BotaoMatch onClick={() => props.mudar("body")}><img src={ImgHome}/></BotaoMatch>
      </Headersty>
-     <Card>
-       {copia}
-     </Card>
+     {/* <Card key={copia.id}>
+          <img src={copia.photo} alt={copia.name}/>
+          <p>{copia.name}</p>
       
+    </Card> */}
+      <Nav>
+       {copia}
+       </Nav>
     </div>
   );
 }
