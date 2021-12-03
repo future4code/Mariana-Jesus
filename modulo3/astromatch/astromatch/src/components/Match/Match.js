@@ -37,7 +37,7 @@ import { Headersty, Imagem, BotaoMatch, Nav } from './style'
 `
 
 
-export default function Body(props) {
+export default function Match(props) {
   const [matches, setMatches] = useState([])
   
   useEffect(()=>{
@@ -69,7 +69,7 @@ export default function Body(props) {
       <img src={Logo}/>
       </Imagem>
       
-     <BotaoMatch onClick={() => props.mudar("body")}><img src={ImgHome}/></BotaoMatch>
+     <BotaoMatch onClick={() => props.mudar("home")}><img src={ImgHome}/></BotaoMatch>
      </Headersty>
       <Nav>
        {copia}
