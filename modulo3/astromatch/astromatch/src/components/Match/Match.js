@@ -48,14 +48,10 @@ export default function Body(props) {
     axios.get(`${url}matches`)
     .then((res)=>{
       setMatches(res.data.matches)
-      // console.log(res.data.matches)
-      // setId(res.data.id)
-      // console.log(res.data.id)
       
     }).catch((err)=>{
       console.log(err.response)
     })
-  
   }
 
   const copia = matches.map((perfil)=>{
@@ -66,7 +62,6 @@ export default function Body(props) {
     </Card>
   })
 
-  
   return (
     <div>
       <Headersty>
@@ -76,11 +71,6 @@ export default function Body(props) {
       
      <BotaoMatch onClick={() => props.mudar("body")}><img src={ImgHome}/></BotaoMatch>
      </Headersty>
-     {/* <Card key={copia.id}>
-          <img src={copia.photo} alt={copia.name}/>
-          <p>{copia.name}</p>
-      
-    </Card> */}
       <Nav>
        {copia}
        </Nav>

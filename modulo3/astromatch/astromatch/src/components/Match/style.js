@@ -6,14 +6,20 @@ export const Headersty = styled.div`
     background-color: #fef5ed;
     width: 100%;
     height: 70px;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    
+    grid-template-columns: 84% 70px;
+    justify-items: center;
+
+    @media screen  and (min-device-width : 375px) and  (max-device-width : 650px){
+      height: 50px;
+    }
+
 `
 
 export const Imagem = styled.image`
-  width: 480px;
+  width: 400px;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -23,7 +29,25 @@ img{
     width: 50%;
     margin-left: 150px;
 }
+@media screen  and (max-device-width : 650px) {
+  width: 300px;
   
+img{
+    width: 50%;
+    margin-left: 115px;
+}
+}
+
+
+@media screen  and (min-device-width : 375px) and  (max-device-width : 650px){
+  width: 300px;
+  
+img{
+    width: 50%;
+    margin-left: 115px;
+}
+}
+
 `
 
 export const BotaoMatch = styled.button`
@@ -79,7 +103,7 @@ export const Footer = styled.div`
 `
 
 export const Card = styled.div`
-  height: 29rem;
+  height: 31rem;
   margin: 10px 8px 12px 8px;
   box-shadow: 0 0 0.5em gray;
   border-style: hidden;
@@ -102,6 +126,23 @@ export const Card = styled.div`
     height: 100%;
     position: absolute;
   }
+
+  @media screen  and (max-device-width : 1024px) {
+    height: 22rem;
+
+    div{
+      top: 210px;
+    }
+}
+
+  @media screen  and (min-device-width : 1025px) {
+    height: 22rem;
+
+    div{
+      top: 240px;
+    }
+}
+
 `
 
 export const Button = styled.button`
@@ -123,3 +164,7 @@ export const Button = styled.button`
     height: 38px;
   }
 `
+
+
+
+

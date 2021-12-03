@@ -12,10 +12,8 @@ import { Headersty, Imagem, BotaoHome, Card, Footer, Button } from './Match/styl
 
 export default function Home(props) {
   const [profile, setProfile] = useState({})
-  const [person, setPerson] = useState(true)
+  const [person, setPerson] = useState(false)
   const [id, setId] = useState('')
-  
-
 
   useEffect(()=>{
     getProfile()
@@ -34,7 +32,6 @@ export default function Home(props) {
 
   }
 
-
   const choosePerson = ()=>{
     const body = {
       "id": id,
@@ -52,7 +49,6 @@ export default function Home(props) {
     setPerson(pessoa)
     choosePerson()
   }
-
 
   return (
     <div className="App">
@@ -75,10 +71,7 @@ export default function Home(props) {
       <Footer>
       <Button onClick={()=>{match(false)}}><img src={Deslike} alt={'imagem deslike'}/></Button>
       <Button onClick={()=>{match(true)}}><img src={Like} alt={'imagem like'}/></Button>
-      
-      
       </Footer>
-      
     </div>
   );
 }

@@ -10,11 +10,20 @@ import styled from 'styled-components';
 const Body = styled.div`
   border: 1px solid gray;
   border-radius: 15px;
-  width: 60vw;
+  width: 50vw;
   height: 80vh;
   margin: 0 auto;
   align-items:center;
   background-color: #fefbf3;
+
+
+  @media screen and (min-device-width : 1024px)  {
+    width: 32vw;
+    height: 85vh;
+}
+  /* @media screen and (max-device-width : 1279px)  {
+    width: 50vw;
+} */
 `;
 
 
