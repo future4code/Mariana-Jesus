@@ -3,6 +3,7 @@ import React from 'react';
 import Form from './pages/ApplicationFormPage'
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
+import Home from './pages/AdminHomePage'
 
 
 
@@ -23,6 +24,16 @@ const Header = styled.div`
   
 `
 
+const Logo = styled.button`
+  background-color: #090343;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 160px;
+  border: hidden;
+  cursor: pointer;
+`
+
 const Amarelo = styled.p`
   color: #FFD523;
   font-size: 40px;
@@ -34,16 +45,20 @@ const Branco = styled.p`
   font-size: 40px;
 `
 
-
 function App() {
   return (
     
     <div className="App">
     <GlobalStyle/>
     <Header>
+    <Logo>
     <Amarelo>L</Amarelo><Branco>abeX</Branco>
+    </Logo>
     </Header>
-      <Form/>
+
+      <Home/>
+      {/* <Form/> */}
+      
     </div>
   );
 }

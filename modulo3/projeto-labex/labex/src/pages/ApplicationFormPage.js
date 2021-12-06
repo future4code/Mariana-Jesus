@@ -1,11 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+import {Pai, Back, Div, Select,Input, Button, Buttons} from '../style/style'
+
 
 function ApplicationFormPage() {
   return (
-    <div className="App">
-      <h1>Iscreva-se para uma viagem!</h1>
-      <form>
-      <select>
+    <Pai>
+      <h1>Inscreva-se para uma viagem!</h1>
+      
+      <Div>
+      <Select>
         <option>Escolha o lugar</option>
         <option value='marte'>Marte</option>
         <option value='jupiter'>Júpiter</option>
@@ -16,17 +20,17 @@ function ApplicationFormPage() {
         <option value='terra'>Terra</option>
         <option value='urano'>Urano</option>
         <option value='netuno'>Netuno</option>
-      </select>
-        <input placeholder= 'Nome' ></input>
+      </Select>
+        <Input placeholder= 'Nome' ></Input>
 
-        <input placeholder= 'Idade' 
-        type='number'></input>
+        <Input placeholder= 'Idade' 
+        type='number'></Input>
 
-        <input placeholder= 'Texto Candidatura'></input>
+        <Input placeholder= 'Texto Candidatura'></Input>
 
-        <input placeholder='Profissão'></input>
+        <Input placeholder='Profissão'></Input>
 
-        <select id="country" name="country">
+        <Select id="country" name="country">
     <option>Selecione o País</option>
     <option value="AF">Afghanistan</option>
     <option value="AX">Aland Islands</option>
@@ -280,9 +284,14 @@ function ApplicationFormPage() {
     <option value="YE">Yemen</option>
     <option value="ZM">Zambia</option>
     <option value="ZW">Zimbabwe</option>
-</select>
-      </form>
-    </div>
+</Select>
+      </Div>
+      <Buttons>
+      <Button>Voltar</Button>
+      <Button>Buscar</Button>
+      </Buttons>
+      <Back/>
+    </Pai>
   );
 }
 
