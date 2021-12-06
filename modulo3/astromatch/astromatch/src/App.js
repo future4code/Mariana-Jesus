@@ -5,6 +5,7 @@ import Match from './components/Match/Match'
 import {url} from './components/constants/url'
 import axios from "axios";
 import styled from 'styled-components';
+import React from 'react';
 
 
 const Body = styled.div`

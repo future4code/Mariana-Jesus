@@ -1,11 +1,11 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {url} from '../constants/url'
 import Logo from '../../img/astromach.png'
 import styled from 'styled-components'
 import ImgHome from '../../img/home.png'
 import axios from 'axios'
-import { useEffect } from 'react/cjs/react.development'
 import { Headersty, Imagem, BotaoMatch, Nav } from './style'
+import React from 'react'
 
 
  const Card = styled.div`

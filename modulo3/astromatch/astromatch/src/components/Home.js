@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react'
 import {url} from './constants/url'
 import ImgMatch from '../img/match.png'
-import styled from 'styled-components';
 import Logo from '../img/astromach.png'
 import Like from '../img/gostar.png'
 import Deslike from '../img/nao-gosto.png'
 import axios from 'axios';
 import { Headersty, Imagem, BotaoHome, Card, Footer, Button } from './Match/style';
+import React from 'react'
 
 
 
