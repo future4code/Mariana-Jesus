@@ -1,9 +1,18 @@
 import './App.css';
 import React from 'react';
+import AdminHome from './pages/AdminHomePage'
 import Form from './pages/ApplicationFormPage'
+import Create from './pages/CreateTripPage'
+import Home from './pages/HomePage'
+import List from './pages/ListTripsPage'
+import Login from './pages/LoginPage'
+import Details from './pages/TripDetailsPage'
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
-import Home from './pages/AdminHomePage'
+import { BrowserRouter, Switch, Route} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import Header from './components/Header'
+
 
 
 
@@ -15,50 +24,47 @@ const GlobalStyle = createGlobalStyle`
   
 `
 
-const Header = styled.div`
-  background-color: #091353;
-  display: flex;
-  height: 70px;
-  align-items: center;
-  
-  
-`
-
-const Logo = styled.button`
-  background-color: #090343;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: 160px;
-  border: hidden;
-  cursor: pointer;
-`
-
-const Amarelo = styled.p`
-  color: #FFD523;
-  font-size: 40px;
-  margin-left: 15px;
-`
-
-const Branco = styled.p`
-  color: white;
-  font-size: 40px;
-`
-
 function App() {
-  return (
-    
-    <div className="App">
-    <GlobalStyle/>
-    <Header>
-    <Logo>
-    <Amarelo>L</Amarelo><Branco>abeX</Branco>
-    </Logo>
-    </Header>
+ 
 
-      <Home/>
-      {/* <Form/> */}
+  return (
+    <div>
+    <GlobalStyle/>
+    <Header/>
+    <BrowserRouter>
+    <Switch>
+    
+
+    <Route exact path={'/'}>
+    <Home/>
+    </Route>
+
+    <Route exact path={'/trips/list'}>
+    <List/>
+    </Route>
+
+    <Route exact path={'/trips/form'}>
+    <Form/>
+    </Route>
+
+    <Route exact path={'/login'}>
+    <Login/>
+    </Route>
+
+    <Route exact path={'/admin/trips/list'}>
+    <AdminHome/>
+    </Route>
+
+    <Route exact path={'/admin/trips/create'}>
+    <Create/>
+    </Route>
+
+    <Route exact path={'/admin/trips/:id'}>
+    <Details/>
+    </Route>
       
+      </Switch>
+    </BrowserRouter>
     </div>
   );
 }

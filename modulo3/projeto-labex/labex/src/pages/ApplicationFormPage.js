@@ -1,9 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Pai, Back, Div, Select,Input, Button, Buttons} from '../style/style'
+import {useHistory} from 'react-router-dom'
 
 
 function ApplicationFormPage() {
+
+  const history = useHistory()
+  const goBack = ()=>{
+    history.goBack()
+  }
+  
+
   return (
     <Pai>
       <h1>Inscreva-se para uma viagem!</h1>
@@ -287,8 +295,8 @@ function ApplicationFormPage() {
 </Select>
       </Div>
       <Buttons>
-      <Button>Voltar</Button>
-      <Button>Buscar</Button>
+      <Button onClick={goBack}>Voltar</Button>
+      <Button>Inscrever</Button>
       </Buttons>
       <Back/>
     </Pai>
