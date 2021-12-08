@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import {useProtect} from '../hooks/useProtecPage'
+
 
 function CreateTripPage() {
 
@@ -7,6 +9,8 @@ function CreateTripPage() {
   const goBack = ()=>{
     history.goBack()
   }
+
+  useProtect()
 
   return (
     <div className="App">
