@@ -6,24 +6,51 @@ import {useEffect, useState} from 'react'
 
 
 const Card = styled.div`
-  border: 1px solid;
-  width: 50%;
+  width: 60%;
   height: auto;
   margin: 0 auto;
   margin-top: 15px;
-  
+  box-shadow: 0 0 1em blue;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const Back = styled.div`
   
   bottom: -80px;
   margin: 0 auto;
-  width: 50%;
-  /* height: 400px; */
+  width: 40%;
   border-radius: 50px;
   background-color: #FFD523;
   margin-top: 70px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `
+const Buttons = styled.div`
+  margin: 0 auto;
+  display: flex;
+  padding: 30px 0;
+  align-content: space-between;
+  align-items: center;
+  width: 30%;
+  justify-content: space-around;
+`
+
+const Button = styled.button`
+  
+  height: 35px;
+  cursor: pointer;
+  width: 150px;
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 10px;
+  border-style: hidden;
+  color: #FFD523;
+  background-color: #091353;
+`
+
 
 function ListTripsPage() {
 
@@ -63,12 +90,18 @@ function ListTripsPage() {
 
   return (
     <div>
+    <Buttons>
+      <div>
+      <Button onClick={goBack}>Voltar</Button>
+      </div>
+      <div>
+      <Button onClick={goToForm}>Formulário</Button>
+      </div>
+      </Buttons>
     <Back>
     {copia}
     </Back>
       
-      <button onClick={goBack}>Voltar</button>
-      <button onClick={goToForm}>Formulário</button>
     </div>
   );
 }

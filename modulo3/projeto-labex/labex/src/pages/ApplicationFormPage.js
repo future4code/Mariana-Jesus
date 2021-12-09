@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Pai, Back, Div, Select,Input, Button, Buttons} from '../style/style'
+import {Pai, Back, Div, Select,Input, Button, Buttons, Button2} from '../style/style'
 import {useHistory} from 'react-router-dom'
 import useForm from '../hooks/useForm'
 import useGetTrip from '../hooks/useGetTrips'
@@ -360,7 +360,7 @@ const ApplicationFormPage = (props) => {
         <Button type='submit' value='Enviar'>Inscrever</Button>
       </Div>
       <Buttons>
-      <Button onClick={goBack}>Voltar</Button>
+      <Button2 onClick={goBack}>Voltar</Button2>
       
       </Buttons>
       <Back/>

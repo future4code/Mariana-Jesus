@@ -8,6 +8,12 @@ export const Pai = styled.div`
   width: 100vw;
   height: 100vh;
   position: fixed;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+  
 `
 
 
@@ -27,10 +33,10 @@ export const Div = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 0 auto;
+  margin: 0 auto;
   height: 330px;
   justify-content: space-between;
-  
+  width: 70%;
   
 `
 
@@ -59,6 +65,7 @@ export const Button = styled.button`
   border-radius: 10px;
   background-color: #FFD523;
   border-style: hidden;
+  color: #091353;
 `
 
 export const Buttons = styled.div`
@@ -68,4 +75,17 @@ export const Buttons = styled.div`
   margin: 0 auto;
   margin-top: 10px;
   align-items: center;
+`
+
+export const Button2 = styled.button`
+  width: 35%;
+  height: 40px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 10px;
+  background-color: #091353;
+  border-style: hidden;
+  color: #FFD523;
 `
