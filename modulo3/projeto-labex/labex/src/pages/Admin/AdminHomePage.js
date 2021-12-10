@@ -2,19 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {useEffect, useState} from 'react'
-import {useProtect} from '../hooks/useProtecPage'
-import styled from 'styled-components'
-import {Url} from '../constants/url'
-
-const Card = styled.div`
-  border: 1px solid;
-  width: 50%;
-  height: auto;
-  margin: 0 auto;
-  margin-top: 15px;
-  
-`
-
+import {useProtect} from '../../hooks/useProtecPage'
+import {Url} from '../../constants/url'
+import {Card, Div, Buttons} from './style'
 
 function AdminHomePage() {
   const [viagens, setViagens] = useState([])
@@ -39,6 +29,7 @@ function AdminHomePage() {
     .then((res)=>{
       setViagens(res.data.trips)
       console.log(res.data.trips)
+
     })
     .catch((err)=>{
       console.log(err.response)
@@ -52,7 +43,8 @@ function AdminHomePage() {
         auth: localStorage.getItem('token')
       }
     }).then(res =>{
-      console.log('Deletado', res.data)
+      alert('Deletado com sucesso!')
+      getTrips()
     }).catch(err =>{
       console.log('Erro ao deletar', err.response.data)
     })
@@ -63,7 +55,7 @@ function AdminHomePage() {
               <div onClick={()=> goToDetail(viagem.id)}>
             <h1>{viagem.name}</h1>
             </div>
-            <button onClick={() => deteleTrip(viagem.id)}>Deletar</button>
+            <button onClick={() => deteleTrip(viagem.id)}>X</button>
             </Card>
   })
 
@@ -71,13 +63,14 @@ function AdminHomePage() {
   useProtect()
 
   return (
-    <div className="App">
-      <p>Admin</p>
+    <Div >
+      <h1>Área administrativa</h1>
       {copia}
+      <Buttons>
       <button onClick={goBack}>Voltar</button>
       <button onClick={goToCreate}>Criar Viagem</button>
-      
-    </div>
+      </Buttons>
+    </Div>
   );
 }
 
