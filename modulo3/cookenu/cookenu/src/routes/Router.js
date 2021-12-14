@@ -6,10 +6,12 @@ import RecipesListPage from "../pages/RecipesListPage/RecipesListPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import RecipeDetailPage from '../pages/RecipeDetailPage/RecipeDetailPage'
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-
+import Header from '../components/Header/Header'
 
 const Router = () =>{
+    return(
     <BrowserRouter>
+        <Header/>
         <Switch>
             <Route exact path='/login'>
                 <LoginPage/>
@@ -17,19 +19,20 @@ const Router = () =>{
             <Route exact path='/cadastro'>
                 <SignUpPage/>
             </Route>
-            <Route exact path='/login'>
+            <Route exact path='/'>
                 <RecipesListPage/>
             </Route>
-            <Route exact path='/login'>
+            <Route exact path='/adicionar-receita'>
                 <AddRecipesPage/>
             </Route>
-            <Route exact path='/login'>
+            <Route exact path='/detalhe/:id'>
                 <RecipeDetailPage/>
             </Route>
-            <Route exact path='/login'>
+            <Route>
                 <ErrorPage/>
             </Route>
         </Switch>
     </BrowserRouter>
+    )
 }
 export default Router
