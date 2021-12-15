@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <div className="App">
+    <div >
     <GlobalStyle/>
     <Router/>
       Oi
