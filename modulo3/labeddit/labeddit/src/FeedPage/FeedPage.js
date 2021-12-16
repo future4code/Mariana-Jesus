@@ -5,7 +5,8 @@ import axios from "axios"
 import {Url} from '../constants/constants'
 import {useState, useEffect} from 'react'
 import useForm from "../hooks/useForm"
-
+import Post from '../PostPage/Post'
+import useRequestData from "../hooks/useRequestData"
 
 const Card = styled.div`
     border:1px solid;
@@ -24,19 +25,23 @@ function FeedPage(){
     }, [post.length])
 
     const {formulario, onChange, limpa} = useForm({title:'', body:''})
-
+    
 
     const history = useHistory()
     const goToDetail = (id)=>{
         history.push(`/login/${id}`)
     }
+    
+    const token = localStorage.getItem('token')
 
    
+
+    //POST
 
     const getPost = ()=>{
         axios.get(`${Url}/posts`, {
             headers:{
-                Authorization: localStorage.getItem('token')
+                Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
@@ -46,16 +51,42 @@ function FeedPage(){
         })
     }
 
+    // const getPost = useRequestData([], `${Url}/posts`)
+
+
+
+
+    const createPost = (e, id)=>{
+        e.preventDefault()
+
+        axios.post(`${Url}/posts`, formulario, {
+            headers:{
+                Authorization: token
+            }
+        }).then(res =>{
+            alert('Postado')
+            console.log(res.data)
+            getPost()
+            limpa()
+        }).catch(err =>{
+            console.log(err.response)
+        })
+    }
+
+
+
+
+
 
     //VOTOS
 
     const createVote = (id)=>{
         let body = {
-            direction: 1
+            "direction": +1
         }
         axios.post(`${Url}/posts/${id}/votes`, body, {
             headers:{
-                Authorization: localStorage.getItem('token')
+                Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
@@ -67,11 +98,11 @@ function FeedPage(){
 
     const changeVote = (id)=>{
         let body = {
-            direction: -1
+            "direction": -1
         }
         axios.put(`${Url}/posts/${id}/votes`, body, {
             headers:{
-                Authorization: localStorage.getItem('token')
+                Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
@@ -84,7 +115,7 @@ function FeedPage(){
     const deleteVote = (id)=>{
         axios.delete(`${Url}/posts/${id}/votes`, {
             headers:{
-                Authorization: localStorage.getItem('token')
+                Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
@@ -95,27 +126,12 @@ function FeedPage(){
     }
 
 
-    const createPost = (e, id)=>{
-        e.preventDefault()
-
-        axios.post(`${Url}/posts`, formulario, {
-            headers:{
-                Authorization: localStorage.getItem('token')
-            }
-        }).then(res =>{
-            alert('Postado')
-            console.log(res.data)
-            limpa()
-        }).catch(err =>{
-            console.log(err.response)
-        })
-    }
-
+    
 
     const copia = post.map((posts)=>{
         return(
-            <Card key={posts.id} id={posts.id}>
-            <div onClick={()=> goToDetail(posts.id)}>
+            <>
+            <Card key={posts.id} id={posts.id} >
             <p>{posts.username}</p>
             <p>{posts.title}</p>
                 <p>{posts.body}</p>
@@ -127,9 +143,36 @@ function FeedPage(){
                 <button onClick={()=> changeVote(posts.id)}>Descurtir</button>
                 </Curte>
                 <p>{posts.commentCount}Comentários</p>
-                </div>
-                {/* <button onClick={()=>}></button> */}
-            </Card>
+                </Card>
+                <button onClick={()=> goToDetail(posts.id)}>Ver detalhes</button>
+            </>
+        )
+    })
+
+
+    // const envia = post.map((posts) =>{
+    //     <Post
+    //         key={posts.id}
+    //         username={posts.username}
+    //         body={posts.body}
+    //         voteSum={posts.voteSum}
+    //         commentCount={posts.commentCount}
+    //     />
+    // })
+
+    const postCards = post.map((posts) => {
+        return (
+            <Post
+                key={posts.id}
+                title={posts.title}
+                body={posts.body}
+                commentCount={posts.commentCount}
+                voteSum={posts.voteSum}
+                userVote={posts.userVote}
+                username={posts.username}
+                createdAt={posts.createdAt}
+                onClick={() => goToDetail(posts.id)}
+                />
         )
     })
 
@@ -158,6 +201,8 @@ function FeedPage(){
                 
             </form>
             {copia}
+            {/* {envia} */}
+            
         </div>
     )
 }
