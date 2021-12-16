@@ -5,18 +5,86 @@ import axios from "axios"
 import {Url} from '../constants/constants'
 import {useState, useEffect} from 'react'
 import useForm from "../hooks/useForm"
-import Post from '../PostPage/Post'
 import useRequestData from "../hooks/useRequestData"
+import { Input, InputGroup, InputRightElement, Button, ButtonGroup, Textarea } from '@chakra-ui/react'
+import Up from '../Image/seta-para-cima.png'
+import Down from '../Image/seta-para-baixo.png'
 
 const Card = styled.div`
-    border:1px solid;
-    width: 50%;
+    width: 75%;
     height: auto;
+    box-shadow: 0 0 00.8em gray;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+
+    p .nome{
+        margin: 0 auto;
+        text-align: center;
+    }
 `
 
 const Curte = styled.div`
     display: flex;
+    flex-direction: column;
 `
+
+const Div = styled.div`
+    background-color: #EEEEEE;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+`
+
+const Form = styled.form`
+    margin: 15px 0;
+    padding: 10px 0;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 0.8em gray;
+    border-radius: 15px;
+
+    /* display={'flex'} direction={'column'} align={'center'} */
+`
+
+const Button1 = styled.button`
+    width: 30px;
+        height: 30px;
+        background-color: orange;
+        border-radius: 52%;
+`
+
+const Nome = styled.div`
+
+    text-align: center;
+
+    h2{
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+`
+
+const Conteudo = styled.div`
+    margin: 10px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: auto;
+
+    p{
+        margin: 10px;
+    }
+`
+
+const Pai = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center
+`
+
 
 function FeedPage(){
     const [post, setPost] = useState([])
@@ -90,6 +158,7 @@ function FeedPage(){
             }
         }).then(res =>{
             console.log(res.data)
+            getPost()
         }).catch(err =>{
             console.log(err.response)
         })
@@ -106,6 +175,7 @@ function FeedPage(){
             }
         }).then(res =>{
             console.log(res.data)
+            getPost()
         }).catch(err =>{
             console.log(err.response)
         })
@@ -132,55 +202,44 @@ function FeedPage(){
         return(
             <>
             <Card key={posts.id} id={posts.id} >
-            <p>{posts.username}</p>
-            <p>{posts.title}</p>
+
+            <Nome>
+            <h2>{posts.username}</h2>
+            </Nome>
+
+            <Conteudo>
+                <p>{posts.title}</p>
                 <p>{posts.body}</p>
+            </Conteudo>
+
+            <Pai>
                 <Curte>
-                <button onClick={()=> createVote(posts.id)}>Curtir</button>
-                <p>
-                {posts.voteSum}</p>
-                
-                <button onClick={()=> changeVote(posts.id)}>Descurtir</button>
+                <Button1
+                onClick={()=> createVote(posts.id)}><img src={Up} width={'100%'} height={'100%'}/></Button1>
+                <Button1 
+                onClick={()=> changeVote(posts.id)}><img src={Down} width={'30px'} height={'30px'}/></Button1>
                 </Curte>
-                <p>{posts.commentCount}Comentários</p>
+                <p>
+                {posts.voteSum} Curtidas</p>
+                </Pai>
+                <p>{posts.commentCount === null ? 0 : posts.commentCount} Comentários</p>
+                <Button colorScheme='orange' variant='solid' onClick={()=> goToDetail(posts.id)}>Ver detalhes</Button>
                 </Card>
-                <button onClick={()=> goToDetail(posts.id)}>Ver detalhes</button>
+                
             </>
         )
     })
 
 
-    // const envia = post.map((posts) =>{
-    //     <Post
-    //         key={posts.id}
-    //         username={posts.username}
-    //         body={posts.body}
-    //         voteSum={posts.voteSum}
-    //         commentCount={posts.commentCount}
-    //     />
-    // })
-
-    const postCards = post.map((posts) => {
-        return (
-            <Post
-                key={posts.id}
-                title={posts.title}
-                body={posts.body}
-                commentCount={posts.commentCount}
-                voteSum={posts.voteSum}
-                userVote={posts.userVote}
-                username={posts.username}
-                createdAt={posts.createdAt}
-                onClick={() => goToDetail(posts.id)}
-                />
-        )
-    })
-
+    
     return(
-        <div>
-            <h1>Feed</h1>
-            <form onSubmit={createPost}>
-                <input
+        <Div >
+            
+            <Form  onSubmit={createPost}>
+                <Input
+                    variant='filled'
+                    margin={'5px 0'}
+                    width={'50%'}
                     placeholder="Título"
                     name="title"
                     type={'text'}
@@ -189,7 +248,10 @@ function FeedPage(){
                     require
 
                 />
-                <input
+                <Textarea
+                    variant='filled'
+                    margin={'5px 0'}
+                    width={'80%'}
                     placeholder="Decrição"
                     name="body"
                     onChange={onChange}
@@ -197,13 +259,13 @@ function FeedPage(){
                     value={formulario.body}
                     required
                 />
-                <button type="submit">Entrar</button>
+                <Button margin={'10px 0'} colorScheme='orange' variant='solid' type="submit">Publicar</Button>
                 
-            </form>
+            </Form>
             {copia}
             {/* {envia} */}
             
-        </div>
+        </Div>
     )
 }
 export default FeedPage

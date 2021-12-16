@@ -1,59 +1,114 @@
 import React from "react";
 import styled from "styled-components";
-import {Url} from '../constants/constants'
+import { Url } from '../constants/constants'
 import axios from "axios";
 import useForm from '../hooks/useForm'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
+import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 
 
-function LoginPage(){
-    const {formulario, onChange, limpa} = useForm({email:'', password:''})
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85vw;
+    margin: 0 auto;
+    background-color: #FDA65D;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-radius: 10px;
+
+    h1{
+        color: white;
+        font-size: 1.5rem;
+        font-style: 
+    }
+    
+    input{
+        width: 75%;
+        margin: 5px 0 5px 0;
+        
+    }
+`
+
+const Div = styled.div`
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button{
+        margin-top: 10px;
+    }
+`
+
+
+function LoginPage() {
+    const { formulario, onChange, limpa } = useForm({ email: '', password: '' })
 
     const history = useHistory()
-    const goBack = ()=>{
+    const goBack = () => {
         history.push('/cadastro')
     }
 
-    const login = (e)=>{
+
+
+    const login = (e) => {
         e.preventDefault()
 
         axios.post(`${Url}/users/login`, formulario)
-        .then(res =>{
-            console.log('Entrou')
-            console.log(res.data.token)
-            localStorage.setItem('token', res.data.token)
-            history.push('/')
-        }).catch(err =>{
-            console.log(err.response)
-        })
+            .then(res => {
+                console.log('Entrou')
+                console.log(res.data.token)
+                localStorage.setItem('token', res.data.token)
+                history.push('/')
+            }).catch(err => {
+                console.log(err.response)
+            })
     }
 
-    return(
-        <div>
+    return (
+        <Div>
+            
+            <Form onSubmit={login}>
             <h1>Login</h1>
-            <form onSubmit={login}>
-                <input
-                    placeholder="email"
+                <Input
+                focusBorderColor='orange'
+                variant='outline' placeholder='Outline'
+                    placeholder="Email"
                     name="email"
-                    type={'text'}
+                    type={'email'}
+                    label={'E-mail'}
                     onChange={onChange}
                     value={formulario.email}
                     require
 
                 />
-                <input
-                    placeholder="senha"
-                    name="password"
-                    onChange={onChange}
-                    type={'password'}
-                    value={formulario.password}
-                    required
-                />
-                <button type="submit">Entrar</button>
+
                 
-            </form>
-            <button onClick={goBack}>Cadastrar</button>
-        </div>
+                    <Input
+                        focusBorderColor='orange'
+                        variant='outline' placeholder='Outline'
+                        placeholder="Senha"
+                        name="password"
+                        onChange={onChange}
+                        type={'password'}
+                        label={'Senha'}
+                        value={formulario.password}
+                        required
+                    />
+
+                <Button
+                    width='40%'
+                    colorScheme='orange' variant='solid' rightIcon={<ArrowForwardIcon />} type="submit">Entrar</Button>
+
+            </Form>
+            <Button
+
+                colorScheme='orange' variant='link' onClick={goBack}>Não possui cadastro? <br />Clique aqui para se cadastrar!</Button>
+        </Div>
     )
 }
 export default LoginPage

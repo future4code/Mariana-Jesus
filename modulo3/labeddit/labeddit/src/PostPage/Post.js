@@ -8,31 +8,110 @@ import useForm from "../hooks/useForm"
 
 
 const Card = styled.div`
-border:1px solid;
-width: 50%;
-height: auto;
+    width: 75%;
+    height: auto;
+    box-shadow: 0 0 0.8em gray;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px auto;
+
 `
 
 const Curte = styled.div`
     display: flex;
+    flex-direction: column;
+`
+
+const Div = styled.div`
+    background-color: #EEEEEE;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+`
+
+const Form = styled.form`
+    margin: 15px 0;
+    padding: 10px 0;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 0.8em gray;
+    border-radius: 15px;
+
+    /* display={'flex'} direction={'column'} align={'center'} */
+`
+
+// const Button1 = styled.button`
+//     width: 30px;
+//         height: 30px;
+//         background-color: orange;
+//         border-radius: 52%;
+// `
+
+const Nome = styled.div`
+
+    text-align: center;
+
+    h2{
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+`
+
+const Conteudo = styled.div`
+    margin: 10px 0;
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: auto;
+
+    p{
+        margin: 10px;
+    }
+`
+
+const Pai = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center
 `
 
 function PostPage(props){
     const [post, setPost] = useState([])
-    const [detalhe, setDetalhe] = useState({})
+    const [detalhe, setDetalhe] = useState([])
     const params = useParams()
     const history = useHistory()
     const goBack = ()=>{
         history.goBack()
     }
     const token = localStorage.getItem('token')
-    // const {key, username, body, voteSum, commentCount} = props
+    
 
     const {formulario, onChange, limpa} = useForm({ body:''})
 
     useEffect(()=>{
         getComments()
+    }, [detalhe.length])
+
+    useEffect(()=>{
+        getPost()
     }, [post.length])
+
+
+    const getPost = ()=>{
+        axios.get(`${Url}/posts`, {
+            headers:{
+                Authorization: token
+            }
+        }).then(res =>{
+            console.log(res.data)
+            setPost(res.data)
+        }).catch(err =>{
+            console.log(err.response)
+        })
+    }
     
 
     const getComments = (id)=>{
@@ -43,8 +122,8 @@ function PostPage(props){
         })
         .then(res =>{
             console.log(res.data)
-            setPost(res.data)
-            console.log(post)
+            setDetalhe(res.data)
+            console.log(detalhe)
         }).catch(err =>{
             console.log(err.response)
         })
@@ -61,7 +140,9 @@ function PostPage(props){
         }).then(res =>{
             console.log(res.data)
             alert('Comentário criado')
+            limpa()
             getComments()
+            
         }).catch(err =>{
             console.log(err.response)
         })
@@ -73,12 +154,13 @@ function PostPage(props){
         let body = {
             "direction": +1
         }
-        axios.post(`${Url}/posts/${params.id}/votes`, body, {
+        axios.post(`${Url}/comments/${id}/votes`, body, {
             headers:{
                 Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
+            getComments()
         }).catch(err =>{
             console.log(err.response)
         })
@@ -89,12 +171,13 @@ function PostPage(props){
         let body = {
             "direction": -1
         }
-        axios.put(`${Url}/posts/${params.id}/votes`, body, {
+        axios.put(`${Url}/comments/${id}/votes`, body, {
             headers:{
                 Authorization: token
             }
         }).then(res =>{
             console.log(res.data)
+            getComments()
         }).catch(err =>{
             console.log(err.response)
         })
@@ -102,13 +185,17 @@ function PostPage(props){
 
 
 
-    const copia = post.map((posts)=>{
+    const copia = detalhe.map((posts)=>{
+        
         return(
             <Card key={posts.id} id={posts.id}>
-            
-            <p>{posts.username}</p>
-            <p>{posts.title}</p>
+            <Nome>
+            <h2>{posts.username}</h2>
+            </Nome>
+            <Conteudo>
+                <p>{posts.title}</p>
                 <p>{posts.body}</p>
+            </Conteudo>
                 <Curte>
                 <button onClick={()=> createVote(posts.id)}>Curtir</button>
                 <button onClick={()=> changeVote(posts.id)}>Descurtir</button>
@@ -116,31 +203,40 @@ function PostPage(props){
                 {posts.voteSum}</p>
                 </Curte>
                 </Card>
-        )})
+    )})
 
-    // const copia1 = post.map((posts)=>{
-    //     return(
-    //         <Card key={posts.id} id={posts.id}>
-            
-    //         <p>{posts.username}</p>
-    //             <p>{posts.body}</p>
-    //             <p>{posts.userVote}</p>
-    //             <p>{posts.voteSum}</p>
-    //             </Card>
-    //     )})
+        const copia1 = post.map((posts)=>{
+            if (posts.id === params.id){
+            return(
+                <>
+                <Card key={posts.id} >
+
+                <Nome>
+            <h2>{posts.username}</h2>
+            </Nome>
+            <Conteudo>
+                <p>{posts.title}</p>
+                <p>{posts.body}</p>
+            </Conteudo>
+                    <Curte>
+                    <p>
+                    {posts.voteSum} Votos</p>
+                    </Curte>
+                    <p>{posts.commentCount === null ? 0 : posts.commentCount} Comentários</p>
+                    </Card>
+                    
+                </>
+            )}
+        })
+
+    
 
 
 
     return(
-        <div>
-            <h1>Post</h1>
-            {/* <div key={props.id}>
-                <p>{props.username}</p>
-                <p>{props.body}</p>
-                <p>{props.voteSum}</p>
-                <p>{props.commentCount}</p>
-            </div> */}
-            {/* {copia1} */}
+        <Div>
+            
+            {copia1}
             <form onSubmit={createComment}>
             <input
             placeholder="Comentário"
@@ -152,7 +248,7 @@ function PostPage(props){
             <button type="submit">Postar</button>
             </form>
             {copia}
-        </div>
+        </Div>
     )
 }
 export default PostPage
