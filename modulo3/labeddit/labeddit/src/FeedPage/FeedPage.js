@@ -23,6 +23,10 @@ const Card = styled.div`
         margin: 0 auto;
         text-align: center;
     }
+
+    @media(min-width: 800px){
+    width: 65%;
+    }
 `
 
 const Curte = styled.div`
@@ -48,14 +52,20 @@ const Form = styled.form`
     box-shadow: 0 0 0.8em gray;
     border-radius: 15px;
 
+    @media(min-width: 800px){
+        width: 65%;
+    }
     /* display={'flex'} direction={'column'} align={'center'} */
 `
 
 const Button1 = styled.button`
     width: 30px;
         height: 30px;
-        background-color: orange;
+        
         border-radius: 52%;
+        :focus{
+            background-color: orange;
+        }
 `
 
 const Nome = styled.div`
@@ -77,6 +87,8 @@ const Conteudo = styled.div`
     p{
         margin: 10px;
     }
+
+    
 `
 
 const Pai = styled.div`
@@ -88,6 +100,7 @@ const Pai = styled.div`
 
 function FeedPage(){
     const [post, setPost] = useState([])
+    const [curtido, setCurtido] = useState(false)
     useEffect(()=>{
         getPost()
     }, [post.length])
@@ -158,6 +171,7 @@ function FeedPage(){
             }
         }).then(res =>{
             console.log(res.data)
+            // setCurtido(!false)
             getPost()
         }).catch(err =>{
             console.log(err.response)
@@ -189,6 +203,7 @@ function FeedPage(){
             }
         }).then(res =>{
             console.log(res.data)
+            // setCurtido(false)
             alert('Deu certo')
         }).catch(err =>{
             console.log(err.response)
@@ -215,7 +230,9 @@ function FeedPage(){
             <Pai>
                 <Curte>
                 <Button1
-                onClick={()=> createVote(posts.id)}><img src={Up} width={'100%'} height={'100%'}/></Button1>
+                onClick={()=> createVote(posts.id)
+                    }
+                ><img src={Up} width={'100%'} height={'100%'}/></Button1>
                 <Button1 
                 onClick={()=> changeVote(posts.id)}><img src={Down} width={'30px'} height={'30px'}/></Button1>
                 </Curte>

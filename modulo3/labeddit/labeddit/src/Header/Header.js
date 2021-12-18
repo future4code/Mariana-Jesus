@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from 'react-router-dom';
 import Imagem from '../Header/download.jpg'
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import {useState} from 'react'
 
 
 const Headerd = styled.div`
@@ -38,11 +39,32 @@ const Headerd = styled.div`
 function Header() {
 
 
-
+  const token = localStorage.getItem('item')
+  const [rightButton, setRightButton] = useState(token ? 'Logout' : 'Login')
   const history = useHistory()
 
   const goToHome = ()=>{
     history.push('/')
+  }
+
+
+    const goToLogin = ()=>{
+        history.push(`/login`)
+    }
+
+  const logout = ()=>{
+    localStorage.removeItem('token')
+  }
+
+  const buttonActive = ()=>{
+    if(token){
+      logout()
+      setRightButton('Login')
+      goToLogin(history)
+    }else{
+      goToLogin(history)
+      
+    }
   }
 
     return (
@@ -55,6 +77,7 @@ function Header() {
             <img src={Imagem} alt="logo"/>
             <h1>LabEddit</h1>
         </Button>
+        <button onClick={buttonActive}>{rightButton}</button>
     </Headerd>
 
     )

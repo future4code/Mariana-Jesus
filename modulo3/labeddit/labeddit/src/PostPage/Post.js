@@ -5,6 +5,8 @@ import {Url} from '../constants/constants'
 import {useEffect, useState} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
 import useForm from "../hooks/useForm"
+import Up from '../Image/seta-para-cima.png'
+import Down from '../Image/seta-para-baixo.png'
 
 
 const Card = styled.div`
@@ -16,6 +18,9 @@ const Card = styled.div`
     text-align: center;
     margin: 10px auto;
 
+    @media(min-width: 800px){
+    width: 65%;
+    }
 `
 
 const Curte = styled.div`
@@ -29,27 +34,57 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    min-height: 100vh;
+
+   
 `
 
 const Form = styled.form`
     margin: 15px 0;
     padding: 10px 0;
-    width: 80%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 0.8em gray;
     border-radius: 15px;
+    background-color: #FDA65D;
+    height: auto;
 
-    /* display={'flex'} direction={'column'} align={'center'} */
+    input{
+        width: 17rem;
+        height: 35px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+
+    button{
+        background: #D66922;
+        cursor: pointer;
+        width: 90px;
+        height: 30px;
+        border-radius: 10px;
+    }
+
+    @media(min-width: 800px){
+    width: 65%;
+
+    input{
+        width: 65%;
+    }
+    }
+
 `
 
-// const Button1 = styled.button`
-//     width: 30px;
-//         height: 30px;
-//         background-color: orange;
-//         border-radius: 52%;
-// `
+const Button1 = styled.button`
+    width: 30px;
+        height: 30px;
+        border-radius: 52%;
+        :focus{
+            background-color: orange;
+        }
+`
+
 
 const Nome = styled.div`
 
@@ -196,12 +231,19 @@ function PostPage(props){
                 <p>{posts.title}</p>
                 <p>{posts.body}</p>
             </Conteudo>
+                <Pai>
                 <Curte>
-                <button onClick={()=> createVote(posts.id)}>Curtir</button>
-                <button onClick={()=> changeVote(posts.id)}>Descurtir</button>
-                <p>
-                {posts.voteSum}</p>
+                <Button1
+                onClick={()=> createVote(posts.id)
+                    }
+                ><img src={Up} width={'100%'} height={'100%'}/></Button1>
+                <Button1 
+                onClick={()=> changeVote(posts.id)}><img src={Down} width={'30px'} height={'30px'}/></Button1>
                 </Curte>
+                <p>
+                {posts.voteSum} Curtidas</p>
+                </Pai>
+                
                 </Card>
     )})
 
@@ -237,7 +279,7 @@ function PostPage(props){
         <Div>
             
             {copia1}
-            <form onSubmit={createComment}>
+            <Form onSubmit={createComment}>
             <input
             placeholder="Comentário"
                     name="body"
@@ -246,7 +288,7 @@ function PostPage(props){
                     value={formulario.body}
                     require/>
             <button type="submit">Postar</button>
-            </form>
+            </Form>
             {copia}
         </Div>
     )

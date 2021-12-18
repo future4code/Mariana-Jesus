@@ -17,9 +17,15 @@ const Form = styled.form`
     width: 85vw;
     margin: 0 auto;
     background-color: #FDA65D;
-    margin: 10px 0;
+    margin: 20px 0;
+    margin-top: 50px;
     padding: 10px 0;
     border-radius: 10px;
+    @media(min-width: 800px){
+    width: 55%;
+    height: 250px;
+    }
+
 
     h1{
         color: white;
@@ -30,7 +36,11 @@ const Form = styled.form`
     input{
         width: 75%;
         margin: 5px 0 5px 0;
-        
+        border-radius: 10px;
+
+        @media(min-width: 800px){
+        width: 65%;
+    }
     }
 `
 
@@ -41,6 +51,7 @@ const Div = styled.div`
     align-items: center;
     button{
         margin-top: 10px;
+        /* color: white; */
     }
 `
 
@@ -101,13 +112,15 @@ function LoginPage() {
                     />
 
                 <Button
-                    width='40%'
+                    width='35%'
                     colorScheme='orange' variant='solid' rightIcon={<ArrowForwardIcon />} type="submit">Entrar</Button>
 
             </Form>
             <Button
 
                 colorScheme='orange' variant='link' onClick={goBack}>Não possui cadastro? <br />Clique aqui para se cadastrar!</Button>
+                
+                
         </Div>
     )
 }
