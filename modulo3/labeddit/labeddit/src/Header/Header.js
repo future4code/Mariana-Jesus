@@ -39,7 +39,7 @@ const Headerd = styled.div`
 function Header() {
 
 
-  const token = localStorage.getItem('item')
+  const token = localStorage.getItem('token')
   const [rightButton, setRightButton] = useState(token ? 'Logout' : 'Login')
   const history = useHistory()
 
