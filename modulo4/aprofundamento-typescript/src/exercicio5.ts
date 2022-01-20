@@ -1,0 +1,1 @@
+//5 Tem muitas configurações. Somente 3 das funções que utilizamos vem descomentadas.
