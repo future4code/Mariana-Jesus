@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "typescript": "^4.5.4"
+  },
+  "name": "aprofundamento-typescript",
+  "version": "1.0.0",
+  "main": "exercicio1.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "tsc && node ./buils/exercicio1.js"
+  },
+  "keywords": [],
+  "author": "Mariana Jesus",
+  "license": "ISC",
+  "description": ""
+}
