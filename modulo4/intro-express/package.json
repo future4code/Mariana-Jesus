@@ -1,0 +1,28 @@
+{
+  "name": "intro-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev ./src/index.ts",
+    "start": "tsc && node ./build/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.10",
+    "@types/uuid": "^8.3.4",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "ts-node-dev": "^1.1.8",
+    "uuid": "^8.3.2"
+  }
+}
