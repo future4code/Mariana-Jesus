@@ -1,4 +1,8 @@
 import {Client} from './Client'
+import {Commerce} from './Commerce'
+import {Industry} from './Industry'
+import {Place} from './Place'
+import { Residence } from './Residence'
 
 
 
@@ -94,4 +98,12 @@ const client: Client = {
     }
 }
 
-console.log(client.calculateBill())
+// console.log(client.calculateBill())
+
+
+const casa:Residence = new Residence(4, '33333333')
+const loja:Commerce = new Commerce(2, '44444444')
+const fabrica:Industry = new Industry(10, '55555555')
+console.log(casa.getCep())
+console.log(loja.getCep())
+console.log(fabrica.getCep())
