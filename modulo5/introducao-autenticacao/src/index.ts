@@ -1,6 +1,8 @@
 import app from "./app"
-import editUser from './endpoints/editUser'
-import createUser from './endpoints/createUser'
+import getUsersById from './endpoints/getUsersById'
+import createUser from './endpoints/createUsers'
+import userLogin from "./endpoints/userLogin"
 
 app.post('/user/signup', createUser)
-app.put('/user/edit/:id', editUser)
+app.get('/user/profile', getUsersById)
+app.post('user/login', userLogin)

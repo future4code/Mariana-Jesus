@@ -10,3 +10,7 @@ CREATE TABLE User (
     password VARCHAR(255) NOT NULL
 ); 
 ```
+
+3 a) Para garantir ao typescript de que a informação virá como uma string.
+
+7 a) Tipa o retorno.
