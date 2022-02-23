@@ -1,43 +1,20 @@
 import express from "express";
-
+import cors from 'cors'
 import { AddressInfo } from "net";
+import createUser from './endpoints/createUser'
+import {getUser} from './endpoints/getUser'
+import {loginUser} from './endpoints/loginUser'
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
+
+app.post("/user/signup", createUser)
+app.post("/user/profile", getUser)
+app.post("/user/login", loginUser)
 
 
-// app.post("/signup", async (req: Request, res: Response) => {
-//     try {
-//       const userData = {
-//         email: req.body.email,
-//         password: req.body.password
-//       };
-    
-//       const id = generate();
-  
-//       const hashPassword = await hash(userData.password);
-  
-//       await createUser(id, userData.email, hashPassword);
-  
-//       const token = generateToken({
-//         id
-//       });
-  
-//       res.status(200).send({
-//         token,
-//       });
-//     } catch (err) {
-//       res.status(400).send({
-//         message: err.message,
-//       });
-//     }
-//   });
-
-
-
-
-  app.post("/login",)
 
 
 const server = app.listen(process.env.PORT || 3003, () => {

@@ -1,6 +1,7 @@
-
+import * as jwt from "jsonwebtoken";
 import knex from "knex";
 import dotenv from "dotenv";
+import {AuthenticationData} from './types'
 
 dotenv.config();
 
@@ -10,12 +11,12 @@ export const connection = knex({
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT || "3306"),
     user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    password: process.env.DB_PASS,
     database: process.env.DB_NAME,
   },
 });
 
-export const userTable = "Users";
+export const userTable = "User";
 
 
 	export const getUserById = async(id: string): Promise<any> => {
@@ -37,30 +38,14 @@ export const userTable = "Users";
 	} 
 	
 
-	  export class AuthenticationData  {
-        [x: string]: any;
 		
-		getData  = (
-			id: string
-			) => {
-			const result = connection
-			  .select("*")
-			  .from(userTable)
-			  .where({ id });
-		
+		export const getData = (
+			key: string
+			): AuthenticationData => {
+			const payload = jwt.verify(key, process.env.JWT_KEY as string) as any
+			const result = {
+				id: payload.id,
+				role: payload.role
+			}
 			return result;
 		  }
-
-		createUser = (
-			id: string, 
-			email: string, 
-			password: string) => {
-		   connection
-			.insert({
-			  id,
-			  email,
-			  password,
-			})
-			.into(userTable);
-		};
-	} 

@@ -1,43 +1,36 @@
 import { Request, Response } from "express";
-import { connection, getUserByEmail} from "../connection";
-import { hash, compare } from "../services/generateHash";
-import { Authenticator } from "../services/Authenticator";
+import { getUserByEmail } from "../connection";
+import { hash } from "../services/generateHash";
+import { generateToken } from "../services/Authenticator";
 
 
-
-
-export default async function loginUser (req: Request, res: Response) {
+export async function loginUser(
+    req: Request,
+    res: Response
+): Promise<void> {
     try {
-      if (!req.body.email || req.body.email.indexOf("@") === -1) {
-        throw new Error("Invalid email");
-      }
-  
-      const userData = {
-        email: req.body.email,
-        password: req.body.password,
-      };
-  
-      const user = await getUserByEmail(userData.email);
-  
-      const compareResult = await compare(
-        userData.password,
-        user.password
-      );
-  
-      if (!compareResult) {
-        throw new Error("Invalid password");
-      }
-  
-      const token = generateToken({
-        id: user.id    
-      });
-  
-      res.status(200).send({
-        token,
-      });
-    } catch (err:any) {
-      res.status(400).send({
-        message: err.message,
-      });
+        const { email, password } = req.body
+
+        if (!email || email.indexOf("@") === -1) {
+            throw new Error("Email inválido")
+        }
+
+        const user = await getUserByEmail(email)
+        const passwordIsCorrect: boolean = user && new hash().compare(password, user.password)
+
+        if (!user || !passwordIsCorrect) {
+            throw new Error("Invalid password");
+        }
+        console.log(user.id)
+        const token = generateToken({
+            id: user.id,
+            role: user.role
+        })
+
+        res.status(200).send({ token })
+    } catch (error: any) {
+        res.status(400).send({
+            message: error.message,
+        });
     }
-  }
+} 

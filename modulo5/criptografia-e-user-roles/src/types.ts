@@ -3,14 +3,16 @@ export enum USER_ROLES{
     ADMIN = "admin"
   }
   
-  export interface authenticationData {
+  export interface AuthenticationData {
      id:string
      role: USER_ROLES
   }
   
-  export interface user extends authenticationData {
-     email: string
-     name: string
-     nickname: string
-     password:string
-  }
+export type user = {
+   id: string
+   name: string
+   email: string
+   password: string
+   nickname: string
+   role: USER_ROLES
+}
