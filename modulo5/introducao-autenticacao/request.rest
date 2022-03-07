@@ -1,0 +1,23 @@
+### Criar Conta
+POST http://localhost:3003/user/signup
+Content-type: application/json
+
+{
+    "email": "teste2@test.com",
+    "password": "12345"
+}
+
+### Login
+GET http://localhost:3003/user/profile
+Content-type: application/json
+
+
+### Pega informações
+POST http://localhost:3003/user/login
+Content-type: application/json
+
+{
+    "email": "teste@teste.com",
+    "password": "1234",
+}
+
